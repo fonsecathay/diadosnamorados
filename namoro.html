@@ -5,10 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Feliz dia dos Namorados</title>
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
     body {
       font-family: 'Arial', sans-serif;
       background-color: #000;
@@ -26,19 +22,20 @@
 
     h1 {
       color: #ff99cc;
-      font-size: 2rem;
+      font-size: clamp(1.5rem, 6vw, 2.5rem);
       margin: 10px 0;
     }
 
     #contador {
-      font-size: 1.2rem;
+      font-size: clamp(1rem, 4vw, 1.5rem);
       margin: 10px 0;
     }
 
     .carrossel {
-      width: 100%;
-      max-width: 300px;
-      height: 400px;
+      width: 90vw;
+      height: 120vw;
+      max-width: 400px;
+      max-height: 533px;
       overflow: hidden;
       border-radius: 12px;
       border: 5px solid #000000;
@@ -48,39 +45,40 @@
 
     .slides {
       display: flex;
-      width: calc(300px * 8); /* 8 imagens */
+      width: calc(8 * 100%);
       height: 100%;
       animation: slide 20s infinite;
     }
 
     .slides img {
-      width: 300px;
-      height: 400px;
+      width: 100%;
+      height: 100%;
       object-fit: cover;
       flex-shrink: 0;
     }
 
     @keyframes slide {
       0%, 10% { transform: translateX(0); }
-      15%, 25% { transform: translateX(-300px); }
-      30%, 40% { transform: translateX(-600px); }
-      45%, 55% { transform: translateX(-900px); }
-      60%, 70% { transform: translateX(-1200px); }
-      75%, 85% { transform: translateX(-1500px); }
-      90%, 100% { transform: translateX(-1800px); }
+      15%, 25% { transform: translateX(-100%); }
+      30%, 40% { transform: translateX(-200%); }
+      45%, 55% { transform: translateX(-300%); }
+      60%, 70% { transform: translateX(-400%); }
+      75%, 85% { transform: translateX(-500%); }
+      90%, 100% { transform: translateX(-600%); }
     }
 
     iframe {
       margin-top: 30px;
       border-radius: 12px;
-      width: 100%;
+      width: 90vw;
       max-width: 300px;
       height: 80px;
+      border: none;
     }
 
     .mensagem {
       margin-top: 30px;
-      font-size: 1rem;
+      font-size: clamp(1rem, 4vw, 1.2rem);
       max-width: 90vw;
       line-height: 1.6;
       color: #ffe0eb;
@@ -101,31 +99,16 @@
       100% { transform: translateY(100vh); opacity: 0; }
     }
 
-    @media (max-width: 400px) {
-      h1 {
-        font-size: 1.5rem;
-      }
-
-      #contador {
-        font-size: 1rem;
-      }
-
-      .mensagem {
-        font-size: 0.95rem;
-      }
-
+    @media (min-width: 768px) {
       .carrossel {
-        height: 350px;
-      }
-
-      .slides img {
-        height: 350px;
+        width: 400px;
+        height: 533px;
       }
     }
   </style>
 </head>
 <body>
-  <!-- Corações caindo -->
+  <!-- Script dos corações -->
   <script>
     function createHeart() {
       const heart = document.createElement("div");
@@ -136,7 +119,6 @@
       document.body.appendChild(heart);
       setTimeout(() => heart.remove(), 5000);
     }
-
     const intervalId = setInterval(createHeart, 200);
     setTimeout(() => clearInterval(intervalId), 3000);
   </script>
@@ -144,10 +126,12 @@
   <!-- Música -->
   <iframe 
     src="https://open.spotify.com/embed/track/7JIuqL4ZqkpfGKQhYlrirs" 
-    frameborder="0" 
     allowtransparency="true" 
     allow="encrypted-media">
   </iframe>
+
+  <!-- Espaço -->
+  <div style="height: 20px;"></div>
 
   <!-- Carrossel -->
   <div class="carrossel">
@@ -173,7 +157,6 @@
     Você é meu sorriso, meu refúgio e meu coração. Te amo para sempre! 💕
   </div>
 
-  <!-- Script contador -->
   <script>
     const dataNamoro = new Date(2025, 1, 28, 0, 0, 0); // 28/02/2025
 
