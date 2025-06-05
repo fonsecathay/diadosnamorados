@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Feliz dia dos Namorados</title>
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       font-family: 'Arial', sans-serif;
       background-color: #000;
@@ -22,17 +26,18 @@
 
     h1 {
       color: #ff99cc;
-      font-size: 2.5rem;
+      font-size: 2rem;
       margin: 10px 0;
     }
 
     #contador {
-      font-size: 1.5rem;
+      font-size: 1.2rem;
       margin: 10px 0;
     }
 
     .carrossel {
-      width: 300px;
+      width: 100%;
+      max-width: 300px;
       height: 400px;
       overflow: hidden;
       border-radius: 12px;
@@ -43,7 +48,7 @@
 
     .slides {
       display: flex;
-      width: 100%;
+      width: calc(300px * 8); /* 8 imagens */
       height: 100%;
       animation: slide 20s infinite;
     }
@@ -68,12 +73,15 @@
     iframe {
       margin-top: 30px;
       border-radius: 12px;
+      width: 100%;
+      max-width: 300px;
+      height: 80px;
     }
 
     .mensagem {
       margin-top: 30px;
-      font-size: 1.2rem;
-      max-width: 600px;
+      font-size: 1rem;
+      max-width: 90vw;
       line-height: 1.6;
       color: #ffe0eb;
     }
@@ -92,10 +100,32 @@
       0% { transform: translateY(0); opacity: 1; }
       100% { transform: translateY(100vh); opacity: 0; }
     }
+
+    @media (max-width: 400px) {
+      h1 {
+        font-size: 1.5rem;
+      }
+
+      #contador {
+        font-size: 1rem;
+      }
+
+      .mensagem {
+        font-size: 0.95rem;
+      }
+
+      .carrossel {
+        height: 350px;
+      }
+
+      .slides img {
+        height: 350px;
+      }
+    }
   </style>
 </head>
 <body>
-  <!-- Script dos corações (somente por 3 segundos) -->
+  <!-- Corações caindo -->
   <script>
     function createHeart() {
       const heart = document.createElement("div");
@@ -108,22 +138,18 @@
     }
 
     const intervalId = setInterval(createHeart, 200);
-    setTimeout(() => clearInterval(intervalId), 3000); // parar depois de 3 segundos
+    setTimeout(() => clearInterval(intervalId), 3000);
   </script>
 
   <!-- Música -->
   <iframe 
     src="https://open.spotify.com/embed/track/7JIuqL4ZqkpfGKQhYlrirs" 
-    width="300" height="80" 
     frameborder="0" 
     allowtransparency="true" 
     allow="encrypted-media">
   </iframe>
 
-  <!-- Espaço entre música e carrossel -->
-  <div style="height: 20px;"></div>
-
-  <!-- Fotos -->
+  <!-- Carrossel -->
   <div class="carrossel">
     <div class="slides">
       <img src="amor.jpg" alt="Foto 1">
@@ -147,6 +173,7 @@
     Você é meu sorriso, meu refúgio e meu coração. Te amo para sempre! 💕
   </div>
 
+  <!-- Script contador -->
   <script>
     const dataNamoro = new Date(2025, 1, 28, 0, 0, 0); // 28/02/2025
 
