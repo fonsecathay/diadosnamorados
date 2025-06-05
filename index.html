@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Feliz dia dos Namorados</title>
+  <title>Feliz Dia dos Namorados</title>
   <style>
     * {
       box-sizing: border-box;
@@ -26,29 +26,40 @@
 
     button {
       font-size: 1.5rem;
-      padding: 15px 30px;
-      background-color: #d397ac;
+      padding: 16px 32px;
+      background: linear-gradient(145deg, #ff99cc, #d36f98);
       color: white;
       border: none;
-      border-radius: 12px;
+      border-radius: 16px;
       cursor: pointer;
-      transition: background-color 0.3s ease;
+      transition: all 0.25s ease-in-out;
+      box-shadow: 0 4px 14px rgba(255, 105, 180, 0.4);
       max-width: 90vw;
+      width: auto;
     }
 
     button:hover {
-      background-color: #fe7ea8;
+      background: linear-gradient(145deg, #fe7ea8, #c05684);
+      box-shadow: 0 6px 20px rgba(255, 105, 180, 0.6);
+      transform: scale(1.05);
+    }
+
+    button:active {
+      transform: scale(0.98);
+      background: linear-gradient(145deg, #e8659b, #a74970);
     }
 
     @media (max-width: 480px) {
       button {
         font-size: 1.2rem;
-        padding: 12px 24px;
+        padding: 14px 24px;
       }
     }
   </style>
 </head>
 <body>
-  <button onclick="window.location.href='namoro.html'">Clique aqui ❤️</button>
+  <button onclick="window.location.href='namoro.html'" role="button" aria-label="Ir para página de namoro">
+    ❤️ Clique aqui
+  </button>
 </body>
 </html>
