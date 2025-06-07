@@ -165,7 +165,7 @@
 
     <!-- Contador -->
   <h1>💕Estamos juntos há:</h1>
-  <div id="contador">Carregando...✨</div>
+  <div id="contador">Carregando...</div>
 
   <!-- Linha de separação -->
   <hr style="width: 100%; border: 0; border-top: 1px solid #ff99cc; margin: 40px 0;">
@@ -209,7 +209,7 @@
       const segundos = Math.floor((diff / 1000) % 60);
 
       document.getElementById("contador").innerText =
-        `${dias} dias, ${horas} horas, ${minutos} minutos e ${segundos} segundos`;
+        `${dias} dias, ${horas} horas, ${minutos} minutos e ${segundos} segundos✨`;
     }
 
     setInterval(atualizarContador, 1000);
