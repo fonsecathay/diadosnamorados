@@ -223,7 +223,7 @@ function atualizarContador() {
     // Ajuste caso o aniversário do namoro ainda não tenha chegado no ano atual
     const mesAtual = agora.getMonth();
     const diaAtual = agora.getDate();
-    if (mesAtual < dataNamoro.getMonth() || (mesAtual === dataNamoro.getMonth() && diaAtual < dataNamoro.getDate())) {
+   if (mesAtual < dataNamoro.getMonth() || (mesAtual === dataNamoro.getMonth() && diaAtual < dataNamoro.getDate())) {
         anos--;
     }
 
