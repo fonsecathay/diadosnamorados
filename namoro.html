@@ -237,8 +237,15 @@ function atualizarContador() {
     const minutos = Math.floor((diff / (1000 * 60)) % 60);
     const segundos = Math.floor((diff / 1000) % 60);
 
+  // 3. Lógica de Singular/Plural
+    const txtAnos = anos === 1 ? "ano" : "anos";
+    const txtDias = dias === 1 ? "dia" : "dias";
+    const txtHoras = horas === 1 ? "hora" : "horas";
+    const txtMinutos = minutos === 1 ? "minuto" : "minutos";
+    const txtSegundos = segundos === 1 ? "segundo" : "segundos";
+
     document.getElementById("contador").innerText = 
-        `${anos} anos, ${dias} dias, ${horas} horas, ${minutos} minutos e ${segundos} segundos ✨`;
+        `${anos} ${txtAnos}, ${dias} ${txtDias}, ${horas} ${txtHoras}, ${minutos} ${txtMinutos} e ${segundos} ${txtSegundos} ✨`;
 }
 
 setInterval(atualizarContador, 1000);
