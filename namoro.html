@@ -211,45 +211,53 @@
     <strong>Eu te amo, Pepe ❤️</strong>
   </div>
   <!-- Script contador -->
-  <script>
-    const dataNamoro = new Date(2025, 1, 28); // 28/02/2025
+ <script>
+    const dataNamoro = new Date(2025, 1, 28); // 28/02/2025 (Mês 1 no JS é Fevereiro)
 
-function atualizarContador() {
-    const agora = new Date();
-    
-    // 1. Calculando os Anos
-    let anos = agora.getFullYear() - dataNamoro.getFullYear();
-    
-    // Ajuste caso o aniversário do namoro ainda não tenha chegado no ano atual
-    const mesAtual = agora.getMonth();
-    const diaAtual = agora.getDate();
-   if (mesAtual < dataNamoro.getMonth() || (mesAtual === dataNamoro.getMonth() && diaAtual < dataNamoro.getDate())) {
-        anos--;
+    function atualizarContador() {
+        const agora = new Date();
+        
+        let anos = agora.getFullYear() - dataNamoro.getFullYear();
+        let meses = agora.getMonth() - dataNamoro.getMonth();
+        let dias = agora.getDate() - dataNamoro.getDate();
+
+        // Ajuste de dias negativos (quando o dia atual é menor que o dia do início)
+        if (dias < 0) {
+            meses--;
+            // Pega o último dia do mês anterior para compensar os dias
+            const ultimoDiaMesAnterior = new Date(agora.getFullYear(), agora.getMonth(), 0).getDate();
+            dias += ultimoDiaMesAnterior;
+        }
+
+        // Ajuste de meses negativos (quando o mês atual é menor que o mês do início)
+        if (meses < 0) {
+            anos--;
+            meses += 12;
+        }
+
+        // Cálculos de tempo detalhado
+        const horas = agora.getHours();
+        const minutos = agora.getMinutes();
+        const segundos = agora.getSeconds();
+
+        // Lógica de Singular/Plural
+        const txtAnos = anos === 1 ? "ano" : "anos";
+        const txtMeses = meses === 1 ? "mês" : "meses";
+        const txtDias = dias === 1 ? "dia" : "dias";
+        const txtHoras = horas === 1 ? "hora" : "horas";
+        const txtMinutos = minutos === 1 ? "minuto" : "minutos";
+        const txtSegundos = segundos === 1 ? "segundo" : "segundos";
+
+        // Montando a frase (Oculta anos ou meses se forem zero, se preferir)
+        let resultado = "";
+        if (anos > 0) resultado += `${anos} ${txtAnos}, `;
+        resultado += `${meses} ${txtMeses}, ${dias} ${txtDias}, ${horas} ${txtHoras}, ${minutos} ${txtMinutos} e ${segundos} ${txtSegundos} ✨`;
+
+        document.getElementById("contador").innerText = resultado;
     }
 
-    // 2. Calculando o restante (Dias, Horas, Minutos, Segundos)
-    const diff = agora - dataNamoro;
-    
-    // Para exibir os dias "restantes" além dos anos, subtraímos os anos em milissegundos
-    // Mas se você quer o total de dias corridos (como estava antes), mantenha o cálculo original:
-    const dias = Math.floor(diff / (1000 * 60 * 60 * 24)) % 365; 
-    const horas = Math.floor((diff / (1000 * 60 * 60)) % 24);
-    const minutos = Math.floor((diff / (1000 * 60)) % 60);
-    const segundos = Math.floor((diff / 1000) % 60);
-
-  // 3. Lógica de Singular/Plural
-    const txtAnos = anos === 1 ? "ano" : "anos";
-    const txtDias = dias === 1 ? "dia" : "dias";
-    const txtHoras = horas === 1 ? "hora" : "horas";
-    const txtMinutos = minutos === 1 ? "minuto" : "minutos";
-    const txtSegundos = segundos === 1 ? "segundo" : "segundos";
-
-    document.getElementById("contador").innerText = 
-        `${anos} ${txtAnos}, ${dias} ${txtDias}, ${horas} ${txtHoras}, ${minutos} ${txtMinutos} e ${segundos} ${txtSegundos} ✨`;
-}
-
-setInterval(atualizarContador, 1000);
-atualizarContador();
-  </script>
+    setInterval(atualizarContador, 1000);
+    atualizarContador();
+</script>
 </body>
 </html>
